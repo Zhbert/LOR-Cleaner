@@ -8,5 +8,7 @@ from commands.user_checker import check_user_status
 def check_command(command):
     if command == "exit":
         sys.exit()
-    if command == "get-tracker":
+    elif command == "get-tracker":
         check_user_status()
+    else:
+        print("Command not found")
