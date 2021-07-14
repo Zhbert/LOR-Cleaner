@@ -7,11 +7,36 @@ import configparser
 
 def check_settings_file():
     settings_path = get_home_path() + "/.lor_cleaner"
+    settings_file = settings_path + "/lorcleaner.conf"
     if os.path.exists(settings_path):
-        print("Найден каталог настроек. Читаю параметры логина...")
+        print("The settings directory was found. Checking the parameters file...")
+        if os.path.exists(settings_file):
+            print("The settings file was found.")
+        else:
+            print("Creating a new settings file...")
+            create_new_settings_file(settings_file, settings_path)
+            print("A new settings file has been created")
     else:
-        print("Каталог настроек не найден: " + settings_path)
-        set_user_data()
+        print("The settings directory was not found: " + settings_path)
+        print("Creating a settings directory:" + settings_path)
+        os.mkdir(settings_path)
+        create_new_settings_file(settings_file, settings_path)
+
+
+def create_new_settings_file(settings_file, settings_path):
+    print("The settings file was not found. Creating...")
+    config = configparser.ConfigParser()
+    config.add_section("USER")
+    config.set("USER", "Username", "NONE")
+    config.set("USER", "Password", "NONE")
+    if os.path.exists(settings_file):
+        with open(settings_file, "w") as config_file:
+            config.write(config_file)
+            config_file.close()
+    else:
+        with open(settings_file, "x") as config_file:
+            config.write(config_file)
+            config_file.close()
 
 
 def get_home_path():
@@ -19,21 +44,3 @@ def get_home_path():
     if home_path == "None":
         home_path = os.getenv('USERPROFILE')
     return home_path
-
-
-def set_user_data():
-    settings_path = get_home_path() + "/.lor_cleaner"
-    config = configparser.ConfigParser()
-    config.add_section("Settings")
-    config.set("Settings", "font", "Courier")
-    config.set("Settings", "font_size", "10")
-    config.set("Settings", "font_style", "Normal")
-    config.set("Settings", "font_info",
-               "You are using %(font)s at %(font_size)s pt")
-    if os.path.exists(settings_path + "/lorcleaner.conf"):
-        with open(settings_path + "/lorcleaner.conf", "w") as config_file:
-            config.write(config_file)
-    else:
-        os.mkdir(settings_path)
-        with open(settings_path + "/lorcleaner.conf", "x") as config_file:
-            config.write(config_file)
