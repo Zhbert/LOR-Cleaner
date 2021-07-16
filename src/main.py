@@ -4,8 +4,10 @@
 import sys
 
 from commands.commands_checker import check_command
+from services.settngs_file_service import check_settings_file
 
 if __name__ == '__main__':
+    check_settings_file()
     if len(sys.argv) > 1:
         for param in sys.argv:
             check_command(param)

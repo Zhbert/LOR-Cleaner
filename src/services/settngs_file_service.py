@@ -46,3 +46,7 @@ def get_home_path():
     if home_path == "None":
         home_path = os.getenv('USERPROFILE')
     return home_path
+
+
+def get_settings_file_path():
+    return get_home_path() + "/.lor_cleaner"

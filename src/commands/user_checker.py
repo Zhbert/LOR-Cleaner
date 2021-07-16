@@ -4,7 +4,6 @@
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from services.settngs_file_service import check_settings_file
 
 
 def check_user_status():
@@ -15,4 +14,4 @@ def check_user_status():
     user_div = browser.find_element_by_id('loginGreating')
     if user_div.text == "Регистрация - Вход":
         print("Warning: you need to log in!")
-        check_settings_file()
+
