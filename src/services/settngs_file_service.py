@@ -49,4 +49,4 @@ def get_home_path():
 
 
 def get_settings_file_path():
-    return get_home_path() + "/.lor_cleaner"
+    return get_home_path() + "/.lor_cleaner" + "/lorcleaner.conf"
