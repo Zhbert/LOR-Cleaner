@@ -29,6 +29,8 @@ def create_new_settings_file(settings_file, settings_path):
     config.add_section("USER")
     config.set("USER", "Username", "NONE")
     config.set("USER", "Password", "NONE")
+    config.add_section("DRIVER")
+    config.set("DRIVER", "Path", "NONE")
     if os.path.exists(settings_file):
         with open(settings_file, "w") as config_file:
             config.write(config_file)
