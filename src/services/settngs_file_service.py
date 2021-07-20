@@ -14,16 +14,16 @@ def check_settings_file():
             print("The settings file was found.")
         else:
             print("Creating a new settings file...")
-            create_new_settings_file(settings_file, settings_path)
+            create_new_settings_file(settings_file)
             print("A new settings file has been created")
     else:
         print("The settings directory was not found: " + settings_path)
         print("Creating a settings directory:" + settings_path)
         os.mkdir(settings_path)
-        create_new_settings_file(settings_file, settings_path)
+        create_new_settings_file(settings_file)
 
 
-def create_new_settings_file(settings_file, settings_path):
+def create_new_settings_file(settings_file):
     print("The settings file was not found. Creating...")
     config = configparser.ConfigParser()
     config.add_section("USER")
@@ -50,3 +50,17 @@ def get_home_path():
 
 def get_settings_file_path():
     return get_home_path() + "/.lor_cleaner" + "/lorcleaner.conf"
+
+
+def set_driver_path():
+    path = input("Enter the path to the browser driver: ")
+    ready = input("Check that the input is correct (y/n) - " + path + " :")
+    if ready == "y" or "Y":
+        config = configparser.ConfigParser()
+        config.read(get_settings_file_path())
+        config.set("DRIVER", "Path", path)
+        with open(get_settings_file_path(), "w") as config_file:
+            config.write(config_file)
+            config_file.close()
+    elif ready == "n" or "N":
+        set_driver_path()
