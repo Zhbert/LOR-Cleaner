@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 #  Copyright (c) 2021.
 #  Created by Zhbert.
 #  Licensed by GPLv3.
+
 import sys
 from commands.user_checker import check_user_status
 from services.webdriver_settings_service import set_driver_path

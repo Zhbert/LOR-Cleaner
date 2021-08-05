@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 #  Copyright (c) 2021.
 #  Created by Zhbert.
 #  Licensed by GPLv3.
+
 import configparser
 
 from services.settings_file_service import get_settings_file_path

@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 #  Copyright (c) 2021.
 #  Created by Zhbert.
 #  Licensed by GPLv3.
+
 import sys
 
 from commands.commands_checker import check_command
