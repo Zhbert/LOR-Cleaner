@@ -6,6 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from services.webdriver_settings_service import get_driver_path
 
+from services.user_settings_service import set_login_parameters
+
 
 def check_user_status():
     chrome_options = Options()
@@ -16,5 +18,6 @@ def check_user_status():
         user_div = browser.find_element_by_id('loginGreating')
         if user_div.text == "Регистрация - Вход":
             print("Warning: you need to log in!")
+            set_login_parameters()
     elif get_driver_path() == "NONE":
         print("You need to configure the path to the browser driver")

@@ -50,17 +50,3 @@ def get_home_path():
 
 def get_settings_file_path():
     return get_home_path() + "/.lor_cleaner" + "/lorcleaner.conf"
-
-
-def set_driver_path():
-    path = input("Enter the path to the browser driver: ")
-    ready = input("Check that the input is correct (y/n) - " + path + " :")
-    if ready == "y" or "Y":
-        config = configparser.ConfigParser()
-        config.read(get_settings_file_path())
-        config.set("DRIVER", "Path", path)
-        with open(get_settings_file_path(), "w") as config_file:
-            config.write(config_file)
-            config_file.close()
-    elif ready == "n" or "N":
-        set_driver_path()

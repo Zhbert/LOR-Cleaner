@@ -4,10 +4,12 @@
 import sys
 
 from commands.commands_checker import check_command
-from services.settngs_file_service import check_settings_file
+from services.settings_file_service import *
+from services.webdriver_settings_service import *
 
 if __name__ == '__main__':
     check_settings_file()
+    check_driver_path()
     if len(sys.argv) > 1:
         for param in sys.argv:
             check_command(param)
