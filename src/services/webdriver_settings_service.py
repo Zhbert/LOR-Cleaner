@@ -6,6 +6,8 @@
 
 import configparser
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from services.settings_file_service import get_settings_file_path
 
 
@@ -34,3 +36,16 @@ def set_driver_path():
             config_file.close()
     elif ready == "n" or "N":
         set_driver_path()
+
+
+def get_browser():
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument("start-maximized");
+    chrome_options.add_argument("disable-infobars")
+    chrome_options.add_argument("--disable-extensions")
+    if get_driver_path() != "NONE":
+        browser = webdriver.Chrome(options=chrome_options, executable_path=get_driver_path())
+        return browser
+    else:
+        return None
