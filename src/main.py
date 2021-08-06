@@ -4,9 +4,7 @@
 #  Created by Zhbert.
 #  Licensed by GPLv3.
 
-import sys
-
-from commands.commands_checker import check_command
+from commands.commands_checker import *
 from services.settings_file_service import *
 from services.webdriver_settings_service import *
 

@@ -18,3 +18,4 @@ def login():
     pass_input = form.find_element_by_name('passwd')
     pass_input.send_keys(get_password())
     pass_input.submit()
+
