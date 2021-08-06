@@ -10,6 +10,8 @@ from commands.commands_checker import check_command
 from services.settings_file_service import *
 from services.webdriver_settings_service import *
 
+browser = get_browser()
+
 if __name__ == '__main__':
     check_settings_file()
     check_driver_path()

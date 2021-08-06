@@ -4,21 +4,17 @@
 #  Created by Zhbert.
 #  Licensed by GPLv3.
 #
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from main import browser
 from services.user_settings_service import get_password
 from services.user_settings_service import get_username
-from services.webdriver_settings_service import get_driver_path
 
 
 def login():
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    browser = webdriver.Chrome(options=chrome_options, executable_path=get_driver_path())
     username = get_username()
     print("Attempt to log in as " + username + " ...")
     browser.get("https://www.linux.org.ru/login.jsp")
-    browser.find_element_by_name('nick').click().send_keys(username)
-    passwd = get_password()
-    browser.find_element_by_name('passwd').send_keys(passwd)
-    browser.find_element_by_class_name('btn btn-primary').click()
+    form = browser.find_element_by_xpath("//form[@action='https://www.linux.org.ru/login_process']")
+    form.find_element_by_name('nick').send_keys(get_username())
+    pass_input = form.find_element_by_name('passwd')
+    pass_input.send_keys(get_password())
+    pass_input.submit()
